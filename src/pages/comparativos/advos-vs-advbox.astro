@@ -1,0 +1,39 @@
+---
+import Comparativo from '../../components/Comparativo.astro';
+
+const data = {
+  comp: 'ADVBOX',
+  title: 'Advogando OS vs ADVBOX: sem taxa de ativação e com IA (2026)',
+  description:
+    'Comparativo honesto entre Advogando OS e ADVBOX: taxa de ativação, captura de intimações, WhatsApp oficial, IA que peticiona e preço. Veja qual escolher para o seu escritório.',
+  canonical: 'https://advos.ai/comparativos/advos-vs-advbox',
+  intro:
+    'O <strong>ADVBOX</strong> é muito conhecido e forte em automação e produtividade — mas cobra taxa de ativação e tem relatos públicos de falha na captura de intimações. O <strong>Advogando OS</strong> entrega IA que peticiona, WhatsApp oficial e boletos, sem taxa de ativação.',
+  tldr: [
+    '<strong>Advogando OS</strong> vence em IA que redige petições, WhatsApp oficial (sem ban), boletos nativos e <em>sem taxa de ativação</em>.',
+    '<strong>ADVBOX</strong> vence se você busca o sistema mais divulgado e um forte foco em métricas de produtividade da equipe.',
+    'Preço: ADVBOX ~R$360–450/mês + taxa de ativação; Advogando OS a partir de R$500/mês, sem ativação, com 7 dias grátis.',
+  ],
+  criteria: [
+    { c: 'Taxa de ativação', advos: 'Sem taxa de ativação', comp: 'Cobra taxa de ativação' },
+    { c: 'Petição redigida por IA', advos: 'Sim', comp: 'Não é o foco' },
+    { c: 'WhatsApp oficial (sem ban)', advos: 'Sim — API oficial', comp: 'Não nativo' },
+    { c: 'Captura de intimações/andamentos', advos: 'Sim', comp: 'Sim (há relatos de falha)' },
+    { c: 'Boletos & conciliação', advos: 'Nativo', comp: 'Não nativo' },
+    { c: 'Preço', advos: 'A partir de R$500/mês, sem ativação', comp: '~R$360–450/mês + taxa de ativação' },
+    { c: 'Reputação pública', advos: '—', comp: 'Relatos de suporte e cancelamento difíceis' },
+  ],
+  whenComp:
+    'Se você quer o sistema mais conhecido do mercado, com forte ênfase em métricas de produtividade e taxa de acerto da equipe, e a taxa de ativação não é um problema, o ADVBOX é uma opção consolidada.',
+  whenAdvos:
+    'Se você não quer pagar taxa de ativação, quer captura de prazo confiável, WhatsApp oficial sem risco de ban e IA que já entrega a petição em rascunho — o Advogando OS faz mais e começa sem custo de entrada além da mensalidade.',
+  demo: { src: '/demos/07-processo-automacao.png', alt: 'Processo com captura de andamentos e automação no Advogando OS' },
+  faqs: [
+    { q: 'Qual a melhor alternativa ao ADVBOX?', a: 'O Advogando OS é uma alternativa ao ADVBOX sem taxa de ativação, com IA que redige petições, WhatsApp oficial (sem risco de ban) e boletos nativos. Faz a gestão completa do escritório e ainda produz peça e atende.' },
+    { q: 'O ADVBOX cobra taxa de ativação?', a: 'Sim, há relatos públicos de que o ADVBOX cobra taxa de ativação além da mensalidade. O Advogando OS não cobra taxa de ativação — você paga a partir de R$500/mês e testa 7 dias grátis.' },
+    { q: 'O ADVBOX falha na captura de intimações?', a: 'Existem relatos públicos (incl. Reclame Aqui) de falhas na captura de intimações no ADVBOX, o que é grave por risco de perda de prazo. O Advogando OS faz captura automática de andamentos e publicações.' },
+    { q: 'Advogando OS é mais barato que o ADVBOX?', a: 'A mensalidade do Advogando OS (a partir de R$500) é parecida, mas sem a taxa de ativação do ADVBOX — e inclui IA, WhatsApp oficial e boletos no mesmo sistema, substituindo ferramentas que você pagaria à parte.' },
+  ],
+};
+---
+<Comparativo {...data} />

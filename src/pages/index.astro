@@ -1,0 +1,376 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Advogando OS — o sistema operacional do escritório de advocacia, com IA';
+const description =
+  'Sistema de gestão jurídica com IA que redige petições e automatiza a rotina: processos, prazos, audiências, financeiro e atendimento em um só lugar. Multi-área. Teste 7 dias grátis.';
+
+// Recursos reais (extraídos do produto)
+const features = [
+  { ic: '🤖', tag: 'IA', t: 'Petições redigidas por IA', d: 'A IA gera rascunhos de petições — réplica, contestação, recursos — prontos pra sua revisão. Você revisa e protocola, sem começar do zero.' },
+  { ic: '📡', tag: 'Automático', t: 'Captura de andamentos e publicações', d: 'Movimentações e publicações do Diário Eletrônico entram sozinhas no processo, via integração. Acabou conferir diário na mão.' },
+  { ic: '⚙️', tag: 'Automação', t: 'Rotina no piloto automático', d: 'Cria cobrança de honorário, muda status do caso, dispara tarefas e follow-up. Agentes que trabalham junto com a sua equipe.' },
+  { ic: '📂', tag: 'Núcleo', t: 'Gestão de processos completa', d: 'CNJ, fases, andamentos, prazos & audiências, partes, documentos, financeiro e histórico. Judicial e administrativo, com a linha do tempo de cada caso.' },
+  { ic: '💰', tag: 'Financeiro', t: 'Boletos e pagamentos, sem ferramenta extra', d: 'Emita boletos, acompanhe o pagamento e concilie o recebimento dentro do sistema — sem contratar uma plataforma financeira à parte. Honorários, parcelas e custas por processo e cliente.' },
+  { ic: '🎯', tag: 'Vendas', t: 'Do anúncio ao contrato assinado', d: 'Capture leads com canal de origem, qualifique no funil e feche com assinatura via ZapSign. Portal do cliente e papel de vendedor inclusos.' },
+  { ic: '💬', tag: 'Atendimento', t: 'WhatsApp oficial — sem risco de ban', d: 'API oficial do WhatsApp (Meta): seu número não toma banimento como nas conexões não-oficiais. O cliente acompanha o andamento do processo e fala com o escritório pelo WhatsApp, tudo registrado no caso.' },
+  { ic: '🔐', tag: 'Previdenciário', t: 'Cofre de credenciais Meu INSS', d: 'Senha do Meu INSS, PIS e nº do benefício guardados com criptografia. Feito pra quem vive de INSS — mas serve a qualquer área.' },
+];
+
+const areas = ['Previdenciário', 'Trabalhista', 'Cível', 'Empresarial', 'Tributário', 'Criminal', 'Família e Sucessões', 'Imobiliário', 'Consumidor', 'Ambiental', 'Administrativo', 'Digital e LGPD', 'Outras'];
+const tamanhos = ['1 a 5', '6 a 15', '16 a 30', '30+'];
+const sistemas = ['ADVBOX', 'Astrea', 'Projuris', 'Legal One', 'Themis', 'Legalcloud', 'CPJ-3C', 'SAJ ADV', 'Juris Correspondente', 'Planilhas / Google Sheets', 'Nenhum', 'Outro'];
+const planos = [500, 1000, 1500, 2000];
+
+const faqs = [
+  { q: 'O que é o Advogando OS?', a: 'O Advogando OS (ADVOS) é o sistema operacional do escritório de advocacia: do primeiro contato do cliente à petição protocolada e ao honorário recebido. Centraliza vendas, processos, prazos, documentos e financeiro — e usa inteligência artificial para redigir peças, capturar andamentos e automatizar a rotina. É multi-área, com força no Direito Previdenciário.' },
+  { q: 'O Advogando OS realmente escreve petições com IA?', a: 'Sim. A IA do Advogando OS gera rascunhos de petições (como réplica e contestação) a partir do processo, para a sua revisão. O advogado revisa e protocola — ganhando tempo sem abrir mão do controle. É o que diferencia o Advogando OS de um software jurídico comum, que só guarda dados.' },
+  { q: 'Serve para qualquer área do Direito ou só previdenciário?', a: 'Serve para qualquer área. O Advogando OS atende Previdenciário, Trabalhista, Cível, Empresarial, Tributário, Família e Sucessões e mais. Ele é especialmente forte no Previdenciário (com recursos como o cofre de credenciais do Meu INSS), mas a gestão de processos, prazos, financeiro e atendimento funciona para escritórios de todas as áreas.' },
+  { q: 'Qual a melhor alternativa ao Astrea, Projuris ou ADVBOX?', a: 'O Advogando OS é uma alternativa que faz mais: além de gerir processos, prazos e financeiro como os concorrentes, ele redige petições com IA, captura andamentos automaticamente e automatiza a rotina do escritório. Por isso compara por valor, não por preço — um sistema que também atende e produz peças substitui custo de equipe.' },
+  { q: 'O WhatsApp do Advogando OS toma banimento?', a: 'Não. O Advogando OS usa a API oficial do WhatsApp (a Cloud API da Meta), então o número do escritório não corre risco de banimento — diferente das soluções que usam conexão não-oficial. O cliente acompanha o andamento do processo e fala com o escritório pelo WhatsApp, com tudo registrado no caso.' },
+  { q: 'Quanto custa e como funciona o teste grátis?', a: 'Os planos do Advogando OS são mensais e começam em R$ 500, com faixas de R$ 500, R$ 1.000, R$ 1.500 e R$ 2.000 conforme o tamanho do escritório e o volume de processos. Agentes de IA adicionais (atendimento, conversão) são contratados por demanda. Você testa 7 dias grátis cadastrando o cartão.' },
+  { q: 'Vale a pena sair da planilha de Excel para o Advogando OS?', a: 'Vale quando a planilha começa a custar prazo, cliente e dinheiro — planilha não avisa prazo, não centraliza o histórico e não dá visão financeira. O Advogando OS substitui a planilha por um sistema único de processos, prazos, CRM e financeiro, com IA e automação por cima. Costuma se pagar no primeiro prazo que você deixa de perder.' },
+];
+
+const ORG = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Advogando OS',
+  alternateName: 'ADVOS',
+  url: 'https://advos.ai',
+  logo: 'https://advos.ai/favicon.svg',
+  description: 'Sistema operacional para escritórios de advocacia, com IA que redige petições e automatiza a rotina.',
+};
+
+const SOFTWARE = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Advogando OS',
+  alternateName: 'ADVOS',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  inLanguage: 'pt-BR',
+  url: 'https://advos.ai',
+  description:
+    'Sistema de gestão jurídica com IA para escritórios de advocacia: processos, prazos, audiências, financeiro, vendas e atendimento, com petições redigidas por IA e captura automática de andamentos.',
+  featureList: [
+    'Petições redigidas por IA',
+    'Captura automática de andamentos e publicações',
+    'Automação de tarefas e do financeiro',
+    'Gestão de processos judiciais e administrativos',
+    'Honorários, parcelas, custas e cobranças',
+    'CRM e funil de vendas com assinatura digital',
+    'WhatsApp e e-mail integrados',
+    'Cofre de credenciais do Meu INSS (criptografado)',
+  ],
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'BRL',
+    lowPrice: '500',
+    highPrice: '2000',
+    offerCount: '4',
+    offers: planos.map((p) => ({
+      '@type': 'Offer',
+      priceCurrency: 'BRL',
+      price: String(p),
+      priceSpecification: { '@type': 'UnitPriceSpecification', price: String(p), priceCurrency: 'BRL', unitText: 'mês' },
+    })),
+  },
+};
+
+const FAQ = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base title={title} description={description} canonical="https://advos.ai/">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(ORG)} />
+    <script type="application/ld+json" set:html={JSON.stringify(SOFTWARE)} />
+    <script type="application/ld+json" set:html={JSON.stringify(FAQ)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Plataforma jurídica com IA</span>
+      <h1>O <span class="grad">sistema operacional</span> do seu escritório.</h1>
+      <p class="sub">
+        Processos, prazos, audiências, financeiro e atendimento em um só lugar — com
+        <strong style="color:var(--text)">IA que redige petições</strong> e automatiza a rotina.
+        Para escritórios de advocacia de qualquer área.
+      </p>
+      <div class="hero-cta">
+        <a href="#testar" class="btn btn-primary">Testar 7 dias grátis →</a>
+        <a href="#recursos" class="btn btn-ghost">Ver o que faz</a>
+      </div>
+      <div class="hero-trust">Sem instalação · Migra da sua planilha ou sistema atual · A partir de R$ 500/mês</div>
+
+      <div class="mockup hero-mockup">
+        <div class="bar"><i></i><i></i><i></i><span class="url">app.advos.ai</span></div>
+        <img src="/demos/01-cliente-painel-360.png" width="1600" height="900" loading="eager"
+             alt="Painel do cliente no Advogando OS: processos ativos, prazos, honorários, resumo do caso por IA e próximas ações" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPACIDADES (tira) -->
+  <section style="padding:22px 0 0">
+    <div class="container">
+      <div class="caps">
+        <span>🤖 Petição redigida por IA</span>
+        <span>💬 WhatsApp oficial — sem ban</span>
+        <span>🧾 Boletos &amp; conciliação</span>
+        <span>📡 Captura de andamentos</span>
+        <span>🔐 Cofre Meu INSS</span>
+        <span>⚙️ Automação da rotina</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE É -->
+  <section style="padding-top:20px">
+    <div class="container">
+      <div class="card" style="padding:28px">
+        <span class="eyebrow">O que é o Advogando OS</span>
+        <p style="font-size:1.12rem; color:#c4d0de; margin:10px 0 0">
+          O <strong style="color:var(--text)">Advogando OS (ADVOS)</strong> é o sistema operacional do escritório
+          de advocacia: do primeiro contato do cliente à petição protocolada e ao honorário recebido. Centraliza
+          vendas, processos, prazos, documentos e financeiro — e usa <strong style="color:var(--text)">inteligência
+          artificial</strong> para redigir peças, capturar andamentos e automatizar a rotina. Tudo num sistema só:
+          <strong style="color:var(--text)">WhatsApp oficial</strong> (sem risco de ban), emissão de boletos com
+          conciliação de pagamento e integrações nativas que você não encontra juntas em nenhum outro sistema
+          jurídico. Multi-área, com força no Direito Previdenciário.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECURSOS -->
+  <section id="recursos">
+    <div class="container">
+      <span class="eyebrow">Recursos</span>
+      <h2>Não é mais um CRM jurídico. É um sistema que trabalha.</h2>
+      <p style="max-width:60ch">Enquanto os outros guardam dados, o Advogando OS produz peças, puxa andamentos e executa a rotina.</p>
+      <div class="grid cols-4" style="margin-top:24px">
+        {features.map((f) => (
+          <div class="card">
+            <span class="ic">{f.ic}</span>
+            <span class="tag">{f.tag}</span>
+            <h3 style="margin-top:10px">{f.t}</h3>
+            <p>{f.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- POR DENTRO (demos reais) -->
+  <section id="por-dentro">
+    <div class="container">
+      <span class="eyebrow">Por dentro</span>
+      <h2>O trabalho acontece na tela — veja.</h2>
+      <p style="max-width:58ch">Telas reais do Advogando OS em uso num escritório.</p>
+
+      <div class="feature-row" style="margin-top:30px">
+        <div class="txt">
+          <span class="tag">IA</span>
+          <h3>A IA redige a petição. Você revisa.</h3>
+          <p>No histórico do caso, a réplica à contestação aparece como <strong style="color:var(--text)">rascunho gerado por IA</strong>, pronto pra revisão — ao lado de WhatsApp, e-mail e ligações, num fluxo só.</p>
+        </div>
+        <div class="mockup">
+          <div class="bar"><i></i><i></i><i></i><span class="url">app.advos.ai</span></div>
+          <img src="/demos/03-historico-ia-omnichannel.png" width="1600" height="900" loading="lazy"
+               alt="Histórico do cliente com petição gerada por IA, mensagens de WhatsApp e e-mail" />
+        </div>
+      </div>
+
+      <div class="feature-row rev">
+        <div class="txt">
+          <span class="tag">Previdenciário</span>
+          <h3>O cofre do escritório previdenciário.</h3>
+          <p>Senha do Meu INSS, PIS e nº do benefício guardados com <strong style="color:var(--text)">criptografia</strong>, mais o vídeo de confirmação do cliente validado. Feito pra quem vive de INSS — útil em qualquer área.</p>
+        </div>
+        <div class="mockup">
+          <div class="bar"><i></i><i></i><i></i><span class="url">app.advos.ai</span></div>
+          <img src="/demos/02-dados-cofre-inss.png" width="1600" height="900" loading="lazy"
+               alt="Dados do cliente com credenciais do Meu INSS criptografadas e vídeo de confirmação" />
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="txt">
+          <span class="tag">Automação</span>
+          <h3>Andamentos e tarefas no piloto automático.</h3>
+          <p>Andamentos capturados sozinhos, <strong style="color:var(--text)">rascunho de honorário criado pela automação</strong>, status que muda só. O sistema executa a rotina enquanto a equipe cuida do cliente.</p>
+        </div>
+        <div class="mockup">
+          <div class="bar"><i></i><i></i><i></i><span class="url">app.advos.ai</span></div>
+          <img src="/demos/07-processo-automacao.png" width="1600" height="872" loading="lazy"
+               alt="Processo com 735 andamentos e automação criando rascunho de honorário" />
+        </div>
+      </div>
+
+      <div class="feature-row rev">
+        <div class="txt">
+          <span class="tag">Vendas &amp; Financeiro</span>
+          <h3>Do anúncio ao honorário recebido.</h3>
+          <p>Contrato com <strong style="color:var(--text)">honorário de êxito</strong>, canal de aquisição, meta de vendas por vendedor e processo vinculado — o comercial e o financeiro do escritório no mesmo lugar.</p>
+        </div>
+        <div class="mockup">
+          <div class="bar"><i></i><i></i><i></i><span class="url">app.advos.ai</span></div>
+          <img src="/demos/04-contrato-vendas-honorario.png" width="1600" height="900" loading="lazy"
+               alt="Edição de contrato com honorário de êxito, canal de aquisição e meta de vendas" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRAÇÕES (moat) -->
+  <section id="integracoes">
+    <div class="container">
+      <span class="eyebrow">Integrações nativas</span>
+      <h2>Tudo conectado de fábrica. Num sistema só.</h2>
+      <p style="max-width:62ch">Em vez de amarrar 5 ferramentas avulsas, o Advogando OS já vem com integrações que a maioria dos sistemas jurídicos não tem — e algumas ninguém tem juntas no mesmo lugar.</p>
+      <div class="grid cols-4" style="margin-top:24px">
+        <div class="card"><span class="ic">💬</span><span class="tag">Exclusivo</span><h3 style="margin-top:10px">WhatsApp API oficial</h3><p>Conexão oficial da Meta — <strong style="color:var(--text)">sem banimento</strong> do número. O cliente acompanha o processo pelo WhatsApp.</p></div>
+        <div class="card"><span class="ic">🧾</span><span class="tag">Financeiro</span><h3 style="margin-top:10px">Boletos & conciliação</h3><p>Emite boleto e concilia o pagamento dentro do sistema, sem plataforma financeira à parte.</p></div>
+        <div class="card"><span class="ic">📡</span><span class="tag">Tribunais</span><h3 style="margin-top:10px">Captura de andamentos</h3><p>Publicações do Diário Eletrônico entram sozinhas no processo.</p></div>
+        <div class="card"><span class="ic">✍️</span><span class="tag">Assinatura</span><h3 style="margin-top:10px">ZapSign</h3><p>Contrato assinado digitalmente, com status atualizado automático.</p></div>
+        <div class="card"><span class="ic">🔐</span><span class="tag">Previdenciário</span><h3 style="margin-top:10px">Meu INSS</h3><p>Credenciais do INSS guardadas com criptografia, prontas pra usar.</p></div>
+        <div class="card"><span class="ic">🧠</span><span class="tag">IA</span><h3 style="margin-top:10px">MCPs & agentes</h3><p>Conecta a agentes e ferramentas via MCP — a base da IA que peticiona e atende.</p></div>
+        <div class="card"><span class="ic">☁️</span><span class="tag">Infra</span><h3 style="margin-top:10px">Cloudflare</h3><p>Velocidade e segurança de borda sustentando a operação.</p></div>
+        <div class="card"><span class="ic">📁</span><span class="tag">Arquivos</span><h3 style="margin-top:10px">Google Drive</h3><p>Documentos e vídeos de confirmação do cliente sincronizados.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUEM -->
+  <section id="para-quem">
+    <div class="container">
+      <span class="eyebrow">Para quem é</span>
+      <h2>Para escritórios que vivem de prazo — de qualquer área.</h2>
+      <div class="grid cols-3" style="margin-top:22px">
+        <div class="card"><h3>De 1 a 30+ pessoas</h3><p>Do advogado solo à banca em crescimento, com 0 a 500+ processos.</p></div>
+        <div class="card"><h3>Multi-área</h3><p>Previdenciário, Trabalhista, Cível, Família, Tributário e mais. Forte no INSS, completo pra todas.</p></div>
+        <div class="card"><h3>Quem quer sair da planilha</h3><p>Ou trocar de sistema por algo que faz o trabalho — não só organiza.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section id="planos">
+    <div class="container price-band">
+      <span class="eyebrow">Planos</span>
+      <h2>Planos a partir de R$ 500/mês</h2>
+      <p>Mensal, conforme o tamanho do escritório e o volume de processos. Agentes de IA adicionais por demanda.</p>
+      <div class="price-tiers">
+        {planos.map((p) => (
+          <div class="tier">
+            <div class="v">R$ {p.toLocaleString('pt-BR')}</div>
+            <div class="per">/mês</div>
+          </div>
+        ))}
+      </div>
+      <!-- TODO: detalhar o que cada plano inclui (usuários, processos, módulos, nº de agentes de IA). -->
+      <p class="note">✓ Teste 7 dias grátis · ✓ Sem taxa de ativação · ✓ Agentes de IA (atendimento, conversão) contratados por demanda</p>
+      <div style="margin-top:22px"><a href="#testar" class="btn btn-primary">Começar o teste grátis →</a></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <span class="eyebrow">Dúvidas</span>
+      <h2>Perguntas frequentes</h2>
+      <div class="faq" style="margin-top:20px; max-width:820px">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD / TESTAR -->
+  <section id="testar">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:26px">
+        <span class="eyebrow">Comece agora</span>
+        <h2>Teste o Advogando OS por 7 dias</h2>
+        <p>Deixe seus dados — nosso time entra em contato e libera seu acesso.</p>
+      </div>
+      <form class="lead" id="lead-form" novalidate>
+        <div class="row">
+          <div class="field"><label for="nome">Nome completo *</label><input id="nome" name="nome" required autocomplete="name" /></div>
+          <div class="field"><label for="email">E-mail *</label><input id="email" name="email" type="email" required autocomplete="email" /></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="telefone">WhatsApp *</label><input id="telefone" name="telefone" type="tel" required autocomplete="tel" placeholder="(DDD) 9 0000-0000" /></div>
+          <div class="field">
+            <label for="area_atuacao">Área de atuação</label>
+            <select id="area_atuacao" name="area_atuacao"><option value="">Selecione…</option>{areas.map((a) => <option value={a}>{a}</option>)}</select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="tamanho_escritorio">Tamanho do escritório</label>
+            <select id="tamanho_escritorio" name="tamanho_escritorio"><option value="">Selecione…</option>{tamanhos.map((t) => <option value={t}>{t} pessoas</option>)}</select>
+          </div>
+          <div class="field">
+            <label for="sistema_atual">Sistema atual</label>
+            <select id="sistema_atual" name="sistema_atual"><option value="">Selecione…</option>{sistemas.map((s) => <option value={s}>{s}</option>)}</select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:6px" id="lead-submit">Quero testar grátis →</button>
+        <div class="form-msg" id="lead-msg" role="status" aria-live="polite"></div>
+        <p style="font-size:.8rem; text-align:center; margin-top:8px">Ao enviar, você concorda em ser contatado pela equipe do Advogando OS.</p>
+      </form>
+    </div>
+  </section>
+
+  <script is:inline>
+    const form = document.getElementById('lead-form');
+    const msg = document.getElementById('lead-msg');
+    const btn = document.getElementById('lead-submit');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.className = 'form-msg';
+      msg.textContent = '';
+      const data = Object.fromEntries(new FormData(form).entries());
+      if (!data.nome || !data.email || !data.telefone) {
+        msg.className = 'form-msg err';
+        msg.textContent = 'Preencha nome, e-mail e WhatsApp.';
+        return;
+      }
+      btn.disabled = true;
+      const original = btn.textContent;
+      btn.textContent = 'Enviando…';
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('fail');
+        msg.className = 'form-msg ok';
+        msg.textContent = '✓ Recebido! Nossa equipe entra em contato em breve.';
+        form.reset();
+      } catch (err) {
+        msg.className = 'form-msg err';
+        msg.textContent = 'Não foi possível enviar agora. Tente novamente ou chame no WhatsApp.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+  </script>
+</Base>

@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Sistema de gestão para escritório previdenciário (INSS) | Advogando OS';
+const description =
+  'O Advogando OS organiza o escritório previdenciário: prazos do INSS, perícias, processos administrativos e judiciais, cofre de credenciais do Meu INSS, WhatsApp oficial e financeiro. Teste 7 dias grátis.';
+const canonical = 'https://advos.ai/previdenciario';
+
+const dores = [
+  'Volume alto de processos do INSS — administrativos e judiciais — difícil de acompanhar na planilha.',
+  'Prazos de recurso, contestação e perícia que não podem passar.',
+  'Agenda de perícias médicas e controle de benefícios por cliente.',
+  'Credenciais do Meu INSS espalhadas, sem segurança.',
+  'Honorários de êxito e recebimentos para conciliar.',
+];
+
+const recursos = [
+  { t: 'Cofre de credenciais do Meu INSS', d: 'Senha, PIS e nº do benefício de cada cliente guardados com criptografia — prontos para uso, sem caderninho.' },
+  { t: 'Prazos e perícias no controle', d: 'Prazos do INSS e agenda de perícias visíveis por cliente e por equipe, com alerta do que vence.' },
+  { t: 'Administrativo + judicial na esteira', d: 'Do requerimento ao processo judicial, com fases (protocolo, perícia, decisão, citação, sentença) numa linha do tempo.' },
+  { t: 'Petição por IA', d: 'Réplica e recursos saem em rascunho gerado por IA para sua revisão — ganho de tempo no que mais repete.' },
+  { t: 'WhatsApp oficial com o cliente', d: 'API oficial (sem risco de ban): o cliente acompanha o andamento e manda documentos pelo WhatsApp, tudo no caso.' },
+  { t: 'Honorários de êxito e boletos', d: 'Controle de honorários de êxito, emissão de boleto e conciliação de pagamento — sem ferramenta à parte.' },
+];
+
+const faqs = [
+  { q: 'Qual o melhor sistema para advogado previdenciário?', a: 'Para a gestão do escritório previdenciário — prazos do INSS, perícias, processos administrativos e judiciais, credenciais do Meu INSS e financeiro — o Advogando OS é uma opção forte, com IA que redige petições e WhatsApp oficial para falar com o cliente. Ele cuida da operação do escritório (distinto das ferramentas de cálculo e petição previdenciária).' },
+  { q: 'O Advogando OS substitui o Previdenciarista ou o IEPREV?', a: 'Não — ele é complementar. Previdenciarista e IEPREV são ferramentas de cálculo e banco de petições previdenciárias. O Advogando OS é o sistema que gere o escritório inteiro (clientes, prazos, perícias, processos, financeiro e atendimento). Enquanto a ferramenta calcula, o Advogando OS organiza a operação.' },
+  { q: 'Como organizar um escritório previdenciário?', a: 'Centralize clientes, processos (administrativos e judiciais), prazos do INSS e agenda de perícias num só sistema; guarde as credenciais do Meu INSS com segurança; acompanhe honorários de êxito e recebimentos; e use WhatsApp oficial para o cliente acompanhar o andamento. O Advogando OS foi desenhado para esse fluxo.' },
+  { q: 'O Advogando OS guarda a senha do Meu INSS com segurança?', a: 'Sim. As credenciais do Meu INSS (senha, PIS, nº do benefício) ficam armazenadas com criptografia dentro do cadastro do cliente, prontas para uso pela equipe autorizada.' },
+  { q: 'Quanto custa o Advogando OS para escritório previdenciário?', a: 'Os planos são mensais e começam em R$ 500, com faixas até R$ 2.000 conforme o tamanho do escritório e o volume de processos. Você testa 7 dias grátis cadastrando o cartão.' },
+];
+
+const FAQ = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<Base title={title} description={description} canonical={canonical}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(FAQ)} />
+  </Fragment>
+
+  <section class="hero" style="padding:64px 0 36px">
+    <div class="container">
+      <span class="eyebrow">Para escritório previdenciário</span>
+      <h1>O sistema que <span class="grad">organiza o escritório previdenciário</span>.</h1>
+      <p class="sub">Prazos do INSS, perícias, processos administrativos e judiciais, cofre de credenciais do Meu INSS, WhatsApp oficial e financeiro — num sistema só, com IA que redige a petição. Feito por quem vive de previdenciário.</p>
+      <div class="hero-cta">
+        <a href="/#testar" class="btn btn-primary">Testar 7 dias grátis →</a>
+        <a href="/#recursos" class="btn btn-ghost">Ver recursos</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="card" style="max-width:780px">
+        <span class="eyebrow">As dores do escritório previdenciário</span>
+        <ul>{dores.map((d) => <li>{d}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <span class="eyebrow">Como o Advogando OS resolve</span>
+      <h2>Gestão previdenciária de ponta a ponta.</h2>
+      <div class="grid cols-3" style="margin-top:24px">
+        {recursos.map((r) => (
+          <div class="card"><h3>{r.t}</h3><p>{r.d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="feature-row">
+        <div class="txt">
+          <span class="tag">Complementar, não concorrente</span>
+          <h3>Calcula no Previdenciarista, gere no Advogando OS.</h3>
+          <p>Ferramentas como Previdenciarista e IEPREV fazem o cálculo e a petição previdenciária. O Advogando OS cuida do <strong style="color:var(--text)">escritório inteiro</strong> em volta disso: clientes, prazos do INSS, perícias, financeiro e atendimento. Eles se somam.</p>
+        </div>
+        <div class="mockup">
+          <div class="bar"><i></i><i></i><i></i><span class="url">app.advos.ai</span></div>
+          <img src="/demos/02-dados-cofre-inss.png" width="1600" height="900" loading="lazy"
+               alt="Cofre de credenciais do Meu INSS criptografadas no Advogando OS" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <span class="eyebrow">Dúvidas</span>
+      <h2>Perguntas frequentes</h2>
+      <div class="faq" style="margin-top:18px;max-width:820px">
+        {faqs.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <section id="testar">
+    <div class="container" style="text-align:center">
+      <h2>Organize seu escritório previdenciário</h2>
+      <p>Teste 7 dias grátis — prazos do INSS, perícias, cofre de credenciais e WhatsApp oficial no mesmo lugar.</p>
+      <div style="margin-top:18px"><a href="/#testar" class="btn btn-primary">Começar agora →</a></div>
+    </div>
+  </section>
+</Base>

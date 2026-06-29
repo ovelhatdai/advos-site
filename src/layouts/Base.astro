@@ -1,0 +1,85 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const site = 'https://advos.ai';
+const {
+  title,
+  description,
+  canonical = `${site}/`,
+  ogImage = '/og.png',
+} = Astro.props;
+const ogUrl = ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Advogando OS" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogUrl} />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container">
+        <a href="/" class="brand"><span class="dot"></span>advos</a>
+        <nav class="nav-links">
+          <a href="/#recursos">Recursos</a>
+          <a href="/#integracoes">Integrações</a>
+          <a href="/#planos">Planos</a>
+          <a href="/#faq">Dúvidas</a>
+          <a href="https://app.advos.ai" rel="nofollow">Entrar</a>
+          <a href="/#testar" class="btn btn-primary" style="padding:8px 16px">Testar grátis</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="container">
+        <div>
+          <div class="brand" style="margin-bottom:8px"><span class="dot"></span>advos</div>
+          <div>O sistema operacional do seu escritório.</div>
+        </div>
+        <div>
+          <div><a href="/#recursos">Recursos</a> · <a href="/#integracoes">Integrações</a> · <a href="/#planos">Planos</a> · <a href="/#faq">Dúvidas</a></div>
+          <div style="margin-top:6px"><a href="/previdenciario">Previdenciário</a> · <a href="/comparativos/advos-vs-astrea">vs Astrea</a> · <a href="/comparativos/advos-vs-projuris">vs Projuris</a> · <a href="/comparativos/advos-vs-advbox">vs ADVBOX</a></div>
+          <div style="margin-top:6px"><a href="https://app.advos.ai" rel="nofollow">Acessar o app</a></div>
+          <div style="margin-top:10px; opacity:.7">© 2026 advos · advos.ai</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
