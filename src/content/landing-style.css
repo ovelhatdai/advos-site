@@ -1,0 +1,9 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: #0A0C10; color: #F2F5F8; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.5; }
+  ::selection { background: rgba(34,211,238,0.25); color: #F2F5F8; }
+  a { color: inherit; text-decoration: none; }
+  @keyframes advosPulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.45; transform: scale(0.82); } }
+  @keyframes advosDrift { 0% { transform: translateY(0); } 100% { transform: translateY(-6px); } }
+
+details>summary::-webkit-details-marker{display:none}details>summary{outline:none}details[open] .faq-chev{transform:rotate(180deg)}.faq-chev{transition:transform .2s}
